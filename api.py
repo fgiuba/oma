@@ -31,7 +31,7 @@ if __name__ == '__main__':
         'spawn': max_connections,
     }
     if ssl_certificate:
-        config['certifle'] = ssl_certificate
+        config['certfile'] = ssl_certificate
     if ssl_key:
         config['keyfile'] = ssl_key
     http_server = WSGIServer(**config)
