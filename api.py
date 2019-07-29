@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from flask import Flask, jsonify
-from gevent.pywsgi import WSGIServer
 
 
 app = Flask('MyApp')
@@ -25,6 +24,9 @@ def hello(name):
 
 
 if __name__ == '__main__':
+
+    from gevent.pywsgi import WSGIServer
+
     config = {
         'listener': (server_bind, server_port),
         'application': app,
@@ -34,5 +36,6 @@ if __name__ == '__main__':
         config['certfile'] = ssl_certificate
     if ssl_key:
         config['keyfile'] = ssl_key
+
     http_server = WSGIServer(**config)
     http_server.serve_forever()
